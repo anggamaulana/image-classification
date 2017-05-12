@@ -1,10 +1,12 @@
 # image-classification
 Image classification with KNN 
 
-pre processing 
-resize,grayscaling,equalized histogram
+pre processing:
 
-classification
-KNN with L1 distance
+resize,grayscaling,threshold grayscale to remove background
 
-library scikit-image
+classification:
+
+KNN with L1 distance for pixel matching
+
+library :  scikit-image,numpy
