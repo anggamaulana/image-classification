@@ -10,7 +10,7 @@ CLASS1=0
 CLASS2=1
 Label_kelas = ["cat","dog"]
 count_datas = 10 #per class
-KNN=5
+KNN=11
 
 ic = io.ImageCollection('class1/*jpg')
 ic2 = io.ImageCollection('class2/*jpg')
@@ -147,7 +147,7 @@ def extract_feature(img):
 	equalized_image = equalize_hist(gray_image)
 	# fig, axes = plt.subplots(nrows=2, ncols=2,
  #                         sharex=True, sharey=True)
-	# gray_image[gray_image>0.85]=1.0
+	gray_image[gray_image>0.85]=1.0
 	# ax = axes.ravel()
 
 	# ax[0].imshow(img, cmap='gray')
