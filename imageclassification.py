@@ -8,12 +8,14 @@ from skimage.exposure import equalize_hist
 
 CLASS1=0
 CLASS2=1
-Label_kelas = ["egg","orange"]
-count_datas = 2 #per class
-KNN=1
+Label_kelas = ["cat","dog"]
+count_datas = 10 #per class
+KNN=5
 
 ic = io.ImageCollection('class1/*jpg')
 ic2 = io.ImageCollection('class2/*jpg')
+
+TOTAL_ACCURACY=0
 
 
 
@@ -38,6 +40,7 @@ def acquire_image(k,index):
 def classification(index_testing,index_training):
 	print "========================================================================="
 	distances = []
+	global TOTAL_ACCURACY
 
 	# calculate all distance
 	for i in index_testing:
@@ -107,6 +110,7 @@ def classification(index_testing,index_training):
 		print ""
 
 	acc = (predict_true/float(len(distances)))*100.0
+	TOTAL_ACCURACY+=acc
 
 	print "ACCURACY "+str(acc)+"%"
 	print "========================================================================="
@@ -141,40 +145,42 @@ def extract_feature(img):
 	image_resized = resize(img, (100, 100), mode='reflect')
 	gray_image = rgb2gray(image_resized)
 	equalized_image = equalize_hist(gray_image)
-	fig, axes = plt.subplots(nrows=2, ncols=2,
-                         sharex=True, sharey=True)
-	ax = axes.ravel()
+	# fig, axes = plt.subplots(nrows=2, ncols=2,
+ #                         sharex=True, sharey=True)
+	# gray_image[gray_image>0.85]=1.0
+	# ax = axes.ravel()
 
-	ax[0].imshow(img, cmap='gray')
-	ax[0].set_title("Original image")
-
-
-	ax[1].imshow(image_resized, cmap='gray')
-	ax[1].set_title("Resized image")
-
-	ax[2].imshow(gray_image, cmap='gray')
-	ax[2].set_title("Image gray")
-
-	ax[3].imshow(equalized_image, cmap='gray')
-	ax[3].set_title("Image Equalization")
+	# ax[0].imshow(img, cmap='gray')
+	# ax[0].set_title("Original image")
 
 
-	ax[0].set_xlim(0, 512)
-	ax[0].set_ylim(512, 0)
+	# ax[1].imshow(image_resized, cmap='gray')
+	# ax[1].set_title("Resized image")
 
-	ax[1].set_xlim(0, 100)
-	ax[1].set_ylim(100, 0)
+	# ax[2].imshow(gray_image, cmap='gray')
+	# ax[2].set_title("Image gray")
 
-	ax[2].set_xlim(0, 100)
-	ax[2].set_ylim(100, 0)
+	# ax[3].imshow(equalized_image, cmap='gray')
+	# ax[3].set_title("Image Equalization")
 
-	ax[2].set_xlim(0, 100)
-	ax[2].set_ylim(100, 0)
+
+	# ax[0].set_xlim(0, 512)
+	# ax[0].set_ylim(512, 0)
+
+	# ax[1].set_xlim(0, 100)
+	# ax[1].set_ylim(100, 0)
+
+	# ax[2].set_xlim(0, 100)
+	# ax[2].set_ylim(100, 0)
+
+	# ax[2].set_xlim(0, 100)
+	# ax[2].set_ylim(100, 0)
 
 	# plt.tight_layout()
 	# plt.show()
+	# print gray_image
 
-	return equalized_image
+	return gray_image
 
 
 
@@ -184,26 +190,28 @@ def distance_formula(img1,img2):
 
 
 # K=1
-testing,training=acquire_image(2,0)
+testing,training=acquire_image(5,0)
 classification(testing,training)
 
 # K=2
-testing,training=acquire_image(2,1)
+testing,training=acquire_image(5,1)
 classification(testing,training)
 
 # K=3
-# testing,training=acquire_image(5,2)
-# classification(testing,training)
+testing,training=acquire_image(5,2)
+classification(testing,training)
 
 # K=4
-# testing,training=acquire_image(5,3)
-# classification(testing,training)
+testing,training=acquire_image(5,3)
+classification(testing,training)
 
 # K=5
-# testing,training=acquire_image(5,4)
-# classification(testing,training)
+testing,training=acquire_image(5,4)
+classification(testing,training)
 
+print "TOTAL ACCURACY = "+str(TOTAL_ACCURACY/5)
 
+# extract_feature(ic[0])
 
 
 
