@@ -145,43 +145,54 @@ def extract_feature(img):
 	image_resized = resize(img, (100, 100), mode='reflect')
 	gray_image = rgb2gray(image_resized)
 	equalized_image = equalize_hist(gray_image)
-	# fig, axes = plt.subplots(nrows=2, ncols=2,
- #                         sharex=True, sharey=True)
 	gray_image[gray_image>0.75]=1.0
-	# ax = axes.ravel()
-
-	# ax[0].imshow(img, cmap='gray')
-	# ax[0].set_title("Original image")
+	
+	return gray_image
 
 
-	# ax[1].imshow(image_resized, cmap='gray')
-	# ax[1].set_title("Resized image")
+def extract_feature2(img):
+	image_resized = resize(img, (100, 100), mode='reflect')
+	gray_image = rgb2gray(image_resized)
+	equalized_image = equalize_hist(gray_image)
+	
+	fig, axes = plt.subplots(nrows=2, ncols=2,
+                         sharex=True, sharey=True)
+	
+	ax = axes.ravel()
 
-	# ax[2].imshow(gray_image, cmap='gray')
-	# ax[2].set_title("Image gray")
-
-	# ax[3].imshow(equalized_image, cmap='gray')
-	# ax[3].set_title("Image Equalization")
+	ax[0].imshow(img, cmap='gray')
+	ax[0].set_title("Original image")
 
 
-	# ax[0].set_xlim(0, 512)
-	# ax[0].set_ylim(512, 0)
+	ax[1].imshow(image_resized, cmap='gray')
+	ax[1].set_title("Resized image")
 
-	# ax[1].set_xlim(0, 100)
-	# ax[1].set_ylim(100, 0)
+	ax[2].imshow(gray_image, cmap='gray')
+	ax[2].set_title("Image gray")
 
-	# ax[2].set_xlim(0, 100)
-	# ax[2].set_ylim(100, 0)
+	gray_image[gray_image>0.75]=1.0
 
-	# ax[2].set_xlim(0, 100)
-	# ax[2].set_ylim(100, 0)
+	ax[3].imshow(gray_image, cmap='gray')
+	ax[3].set_title("Threshold")
 
-	# plt.tight_layout()
-	# plt.show()
+
+	ax[0].set_xlim(0, 512)
+	ax[0].set_ylim(512, 0)
+
+	ax[1].set_xlim(0, 100)
+	ax[1].set_ylim(100, 0)
+
+	ax[2].set_xlim(0, 100)
+	ax[2].set_ylim(100, 0)
+
+	ax[2].set_xlim(0, 100)
+	ax[2].set_ylim(100, 0)
+
+	plt.tight_layout()
+	plt.show()
 	# print gray_image
 
 	return gray_image
-
 
 
 def distance_formula(img1,img2):
@@ -211,7 +222,7 @@ classification(testing,training)
 
 print "TOTAL ACCURACY = "+str(TOTAL_ACCURACY/5)
 
-# extract_feature(ic[0])
+# extract_feature2(ic[3])
 
 
 
