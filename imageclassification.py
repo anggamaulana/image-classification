@@ -99,7 +99,7 @@ def classification(index_testing,index_training):
 			index_choosen = np.append(index_choosen,minimum_index)
 
 		classified = classified_as(index_choosen)
-		print "k terdekat : "+ print_k_nearest(index_choosen)
+		print "k terdekat : "+ print_k_nearest(index_choosen,item)
 		print "diklasifikasikan sebagai : "+classified
 		
 		if Label_kelas[int(idx1%2)]==classified:
@@ -117,11 +117,13 @@ def classification(index_testing,index_training):
 
 
 
-def print_k_nearest(index_choosen):
-	string = ""
+def print_k_nearest(index_choosen,dis):
+	string = "\n"
 	for i in index_choosen:
 		string += Label_kelas[int(i%2)]
-		string+=","
+		string+="="+str(dis[int(i)])
+		
+		string+="\n"
 	return string
 
 def classified_as(index_choosen):
@@ -201,28 +203,28 @@ def distance_formula(img1,img2):
 
 
 # K=1
-testing,training=acquire_image(5,0)
-classification(testing,training)
+# testing,training=acquire_image(5,0)
+# classification(testing,training)
 
-# K=2
-testing,training=acquire_image(5,1)
-classification(testing,training)
+# # K=2
+# testing,training=acquire_image(5,1)
+# classification(testing,training)
 
-# K=3
-testing,training=acquire_image(5,2)
-classification(testing,training)
+# # K=3
+# testing,training=acquire_image(5,2)
+# classification(testing,training)
 
-# K=4
-testing,training=acquire_image(5,3)
-classification(testing,training)
+# # K=4
+# testing,training=acquire_image(5,3)
+# classification(testing,training)
 
-# K=5
-testing,training=acquire_image(5,4)
-classification(testing,training)
+# # K=5
+# testing,training=acquire_image(5,4)
+# classification(testing,training)
 
-print "TOTAL ACCURACY = "+str(TOTAL_ACCURACY/5)
+# print "TOTAL ACCURACY = "+str(TOTAL_ACCURACY/5)
 
-# extract_feature2(ic[3])
+extract_feature2(ic[3])
 
 
 
