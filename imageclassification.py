@@ -203,28 +203,28 @@ def distance_formula(img1,img2):
 
 
 # K=1
-# testing,training=acquire_image(5,0)
-# classification(testing,training)
+testing,training=acquire_image(5,0)
+classification(testing,training)
 
-# # K=2
-# testing,training=acquire_image(5,1)
-# classification(testing,training)
+# K=2
+testing,training=acquire_image(5,1)
+classification(testing,training)
 
-# # K=3
-# testing,training=acquire_image(5,2)
-# classification(testing,training)
+# K=3
+testing,training=acquire_image(5,2)
+classification(testing,training)
 
-# # K=4
-# testing,training=acquire_image(5,3)
-# classification(testing,training)
+# K=4
+testing,training=acquire_image(5,3)
+classification(testing,training)
 
-# # K=5
-# testing,training=acquire_image(5,4)
-# classification(testing,training)
+# K=5
+testing,training=acquire_image(5,4)
+classification(testing,training)
 
-# print "TOTAL ACCURACY = "+str(TOTAL_ACCURACY/5)
+print "TOTAL ACCURACY = "+str(TOTAL_ACCURACY/5)
 
-extract_feature2(ic[3])
+# extract_feature2(ic[3])
 
 
 
